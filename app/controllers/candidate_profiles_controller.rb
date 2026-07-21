@@ -23,4 +23,9 @@ class CandidateProfilesController < ApplicationController
       :skills, :languages, :regions, :candidate_documents
     ).find(params[:id])
   end
+
+  def destroy
+    CandidateProfile.find(params[:id]).destroy
+    redirect_to candidate_profiles_path, notice: "Profile deleted."
+  end
 end

@@ -81,6 +81,27 @@ class OnboardingController < ApplicationController
     load_form_data
   end
 
+  def generate_summary
+    api_key = ENV["ANTHROPIC_API_KEY"].presence ||
+              params[:anthropic_api_key].presence ||
+              session[:anthropic_api_key]
+
+    if params[:anthropic_api_key].present?
+      session[:anthropic_api_key] = params[:anthropic_api_key]
+    end
+
+    unless api_key.present?
+      render json: { error: "No API key. Enter your Anthropic API key." }, status: :unprocessable_entity
+      return
+    end
+
+    profile = current_profile || @profile
+    summary = SummaryGeneratorService.call(profile, api_key: api_key)
+    render json: { summary: summary }
+  rescue => e
+    render json: { error: e.message }, status: :unprocessable_entity
+  end
+
   def skills
     job_function = JobFunction.find_by(id: params[:job_function_id])
     @skills  = job_function ? job_function.skills.order(:name) : []

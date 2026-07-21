@@ -83,8 +83,14 @@
                     <%= profile.created_at.strftime("%d %b %Y") %>
                   </td>
                   <td class="px-4 py-3 text-right">
-                    <%= link_to "View", candidate_profile_path(profile),
-                          class: "text-xs font-medium text-slate-700 hover:text-slate-900 underline underline-offset-2" %>
+                    <div class="flex items-center justify-end gap-3">
+                      <%= link_to "View", candidate_profile_path(profile),
+                            class: "text-xs font-medium text-slate-700 hover:text-slate-900 underline underline-offset-2",
+                            data: { turbo_frame: "_top" } %>
+                      <%= button_to "Delete", candidate_profile_path(profile), method: :delete,
+                            class: "text-xs font-medium text-red-500 hover:text-red-700 underline underline-offset-2",
+                            data: { turbo_confirm: "Delete this profile? This cannot be undone." } %>
+                    </div>
                   </td>
                 </tr>
               <% end %>

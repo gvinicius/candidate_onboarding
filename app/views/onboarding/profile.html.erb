@@ -362,10 +362,38 @@
         </svg>
       </div>
       <div class="card-body space-y-4" data-profile-section-target="content">
-        <div class="field-group">
+        <div class="field-group" data-controller="ai-summary" data-ai-summary-url-value="<%= onboarding_generate_summary_path %>">
           <%= f.label :professional_summary, "Professional summary", class: "form-label" %>
-          <div class="badge-extracted inline-flex mb-1">AI suggested — please review</div>
-          <%= f.text_area :professional_summary, class: "form-textarea", placeholder: "A brief summary of your professional background..." %>
+          <div class="flex items-center gap-2 mb-1">
+            <% if @profile.professional_summary.present? %>
+              <div class="badge-extracted inline-flex">AI suggested — please review</div>
+            <% end %>
+            <button type="button"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 border border-slate-200 rounded-md px-2.5 py-1 hover:bg-slate-50 disabled:opacity-50"
+                    data-ai-summary-target="button"
+                    data-action="click->ai-summary#generate">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m1.636 6.364l.707-.707M12 21v-1M6.343 6.343l-.707-.707" />
+              </svg>
+              Generate with AI
+            </button>
+            <svg class="hidden w-3.5 h-3.5 animate-spin text-slate-500" data-ai-summary-target="spinner" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+          </div>
+          <p class="text-xs text-red-600 mb-1" data-ai-summary-target="error"></p>
+          <%= f.text_area :professional_summary, class: "form-textarea", placeholder: "A brief summary of your professional background...",
+                data: { "ai-summary-target": "textarea" } %>
+          <% unless ENV["ANTHROPIC_API_KEY"].present? || session[:anthropic_api_key].present? %>
+            <div class="mt-2">
+              <input type="password"
+                     placeholder="Anthropic API key (sk-ant-…) — needed to generate"
+                     class="form-input text-xs"
+                     autocomplete="off"
+                     data-ai-summary-target="apiKeyInput">
+            </div>
+          <% end %>
         </div>
         <div class="field-group">
           <%= f.label :motivation_for_employer, "Motivation for employer", class: "form-label" %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get  "/profile",  to: "onboarding#profile",        as: :onboarding_profile
     patch "/profile", to: "onboarding#update_profile", as: :onboarding_update_profile
     get "/skills",   to: "onboarding#skills",         as: :onboarding_skills
+    post "/generate_summary", to: "onboarding#generate_summary", as: :onboarding_generate_summary
   end
 
   # Nested resources on candidate profile
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     resources :work_experiences, only: %i[create update destroy]
   end
 
-  resources :candidate_profiles, only: %i[index show]
+  resources :candidate_profiles, only: %i[index show destroy]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
