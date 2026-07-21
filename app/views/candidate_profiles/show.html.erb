@@ -1,0 +1,93 @@
+<%= content_for :title, "#{@profile.first_name} #{@profile.last_name} — Profile" %>
+
+<div class="max-w-3xl mx-auto px-4 py-8">
+  <div class="flex items-center gap-3 mb-6">
+    <%= link_to "&larr; All profiles".html_safe, candidate_profiles_path, class: "text-sm text-slate-500 hover:text-slate-700" %>
+  </div>
+
+  <!-- Header -->
+  <div class="card mb-6">
+    <div class="card-body flex items-start justify-between gap-4">
+      <div>
+        <h1 class="text-xl font-bold text-slate-900">
+          <%= [@profile.first_name, @profile.last_name].compact.join(" ").presence || "Unnamed candidate" %>
+        </h1>
+        <p class="text-sm text-slate-500 mt-1"><%= @profile.job_function&.name %></p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <% if @profile.email.present? %>
+            <span class="text-xs text-slate-600"><%= @profile.email %></span>
+          <% end %>
+          <% if @profile.city.present? %>
+            <span class="text-xs text-slate-400">&middot;</span>
+            <span class="text-xs text-slate-600"><%= [@profile.city, @profile.country].compact.join(", ") %></span>
+          <% end %>
+          <% if @profile.years_of_experience.present? %>
+            <span class="text-xs text-slate-400">&middot;</span>
+            <span class="text-xs text-slate-600"><%= @profile.years_of_experience %> yrs exp</span>
+          <% end %>
+        </div>
+      </div>
+      <% if @profile.search_status.present? %>
+        <span class="<%= search_status_class(@profile.search_status) %>"><%= @profile.search_status.capitalize %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <% if @profile.educations.any? %>
+    <div class="section-card">
+      <div class="card-header"><h2 class="section-title">Education</h2></div>
+      <div class="card-body divide-y divide-slate-100">
+        <% @profile.educations.each do |edu| %>
+          <div class="py-3 first:pt-0 last:pb-0">
+            <p class="text-sm font-medium text-slate-900"><%= edu.study_course %></p>
+            <p class="text-xs text-slate-500"><%= [edu.institution, edu.city_country].compact.join(" · ") %></p>
+            <p class="text-xs text-slate-400 mt-0.5">
+              <%= edu.level&.upcase %>
+              <% if edu.start_date || edu.end_date %>
+                &middot; <%= [edu.start_date&.year, edu.end_date&.year].compact.join("–") %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Work Experience -->
+  <% if @profile.work_experiences.any? %>
+    <div class="section-card">
+      <div class="card-header"><h2 class="section-title">Work Experience</h2></div>
+      <div class="card-body divide-y divide-slate-100">
+        <% @profile.work_experiences.each do |exp| %>
+          <div class="py-3 first:pt-0 last:pb-0">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-sm font-medium text-slate-900"><%= exp.job_title %></p>
+                <p class="text-xs text-slate-500"><%= exp.company_name %></p>
+              </div>
+              <% if exp.current_job %>
+                <span class="badge-extracted">Current</span>
+              <% end %>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              <%= [exp.start_date&.strftime("%b %Y"), exp.current_job ? "Present" : exp.end_date&.strftime("%b %Y")].compact.join(" – ") %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Skills -->
+  <% if @profile.skills.any? %>
+    <div class="section-card">
+      <div class="card-header"><h2 class="section-title">Skills</h2></div>
+      <div class="card-body flex flex-wrap gap-2">
+        <% @profile.skills.each do |skill| %>
+          <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium bg-slate-100 text-slate-700"><%= skill.name %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

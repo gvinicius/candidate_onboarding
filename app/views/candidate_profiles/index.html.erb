@@ -1,0 +1,125 @@
+<%= content_for :title, "Candidate Profiles" %>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Page header -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-xl font-bold text-slate-900">Candidate Profiles</h1>
+      <p class="text-sm text-slate-500 mt-0.5"><%= @pagy.count %> total</p>
+    </div>
+    <%= link_to "New candidate", root_path, class: "btn-primary" %>
+  </div>
+
+  <!-- Search -->
+  <%= form_with url: candidate_profiles_path, method: :get, data: { turbo_frame: "profiles-table" }, class: "mb-4" do |f| %>
+    <div class="relative max-w-sm">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <%= f.search_field :q, value: params[:q], placeholder: "Search by name, email, city…",
+            class: "form-input pl-9",
+            data: { action: "input->search#submit" } %>
+    </div>
+  <% end %>
+
+  <!-- Table -->
+  <%= turbo_frame_tag "profiles-table" do %>
+    <div class="card overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-100 bg-slate-50">
+              <th class="text-left font-medium text-slate-500 px-4 py-3">Name</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">Email</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">Job function</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">City</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">Status</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">CV</th>
+              <th class="text-left font-medium text-slate-500 px-4 py-3">Created</th>
+              <th class="px-4 py-3"></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <% if @profiles.empty? %>
+              <tr>
+                <td colspan="8" class="px-4 py-12 text-center text-sm text-slate-400">
+                  No profiles found<%= params[:q].present? ? " for &ldquo;#{params[:q]}&rdquo;" : "" %>.
+                </td>
+              </tr>
+            <% else %>
+              <% @profiles.each do |profile| %>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3 font-medium text-slate-900">
+                    <%= profile.first_name.present? || profile.last_name.present? ?
+                          [profile.first_name, profile.last_name].compact.join(" ") :
+                          content_tag(:span, "—", class: "text-slate-400") %>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">
+                    <%= profile.email.present? ? profile.email : content_tag(:span, "—", class: "text-slate-400") %>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">
+                    <%= profile.job_function&.name || content_tag(:span, "—", class: "text-slate-400") %>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">
+                    <%= profile.city.present? ? profile.city : content_tag(:span, "—", class: "text-slate-400") %>
+                  </td>
+                  <td class="px-4 py-3">
+                    <% if profile.search_status.present? %>
+                      <span class="<%= search_status_class(profile.search_status) %>">
+                        <%= profile.search_status.capitalize %>
+                      </span>
+                    <% else %>
+                      <span class="text-slate-400">—</span>
+                    <% end %>
+                  </td>
+                  <td class="px-4 py-3">
+                    <% doc = profile.candidate_documents.first %>
+                    <% if doc %>
+                      <span class="<%= cv_status_class(doc.parsing_status) %>">
+                        <%= doc.parsing_status.capitalize %>
+                      </span>
+                    <% else %>
+                      <span class="text-slate-400 text-xs">No CV</span>
+                    <% end %>
+                  </td>
+                  <td class="px-4 py-3 text-slate-500 text-xs">
+                    <%= profile.created_at.strftime("%d %b %Y") %>
+                  </td>
+                  <td class="px-4 py-3 text-right">
+                    <%= link_to "View", candidate_profile_path(profile),
+                          class: "text-xs font-medium text-slate-700 hover:text-slate-900 underline underline-offset-2" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <% if @pagy.pages > 1 %>
+        <div class="border-t border-slate-100 px-4 py-3 flex items-center justify-between">
+          <p class="text-xs text-slate-500">
+            Showing <%= @pagy.from %>–<%= @pagy.to %> of <%= @pagy.count %>
+          </p>
+          <div class="flex items-center gap-1">
+            <% if @pagy.prev %>
+              <%= link_to candidate_profiles_path(page: @pagy.prev, q: params[:q]),
+                    class: "btn-secondary-sm",
+                    data: { turbo_frame: "profiles-table" } do %>
+                &larr; Prev
+              <% end %>
+            <% end %>
+            <% if @pagy.next %>
+              <%= link_to candidate_profiles_path(page: @pagy.next, q: params[:q]),
+                    class: "btn-secondary-sm",
+                    data: { turbo_frame: "profiles-table" } do %>
+                Next &rarr;
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

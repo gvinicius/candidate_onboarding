@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :work_experiences, only: %i[create update destroy]
   end
 
+  resources :candidate_profiles, only: %i[index show]
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: "onboarding#index"
