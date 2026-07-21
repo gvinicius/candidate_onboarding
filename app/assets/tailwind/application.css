@@ -1,39 +1,19 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-}
-
 @layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
-  }
   .btn-primary {
-    @apply btn bg-slate-900 text-white hover:bg-slate-700 focus-visible:ring-slate-900;
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors
+           bg-slate-900 text-white hover:bg-slate-700
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2
+           disabled:pointer-events-none disabled:opacity-50
+           h-10 px-4 py-2;
   }
   .btn-secondary {
-    @apply btn bg-white border border-slate-200 text-slate-900 hover:bg-slate-50;
-  }
-  .btn-destructive {
-    @apply btn bg-red-500 text-white hover:bg-red-600;
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors
+           bg-white border border-slate-200 text-slate-900 hover:bg-slate-50
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+           disabled:pointer-events-none disabled:opacity-50
+           h-10 px-4 py-2;
   }
   .btn-sm {
     @apply h-8 px-3 text-xs;
@@ -51,34 +31,36 @@
     @apply block text-sm font-medium text-slate-700 mb-1;
   }
   .form-input {
-    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50;
+    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm placeholder:text-slate-400
+           focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent
+           disabled:cursor-not-allowed disabled:opacity-50;
   }
   .form-select {
-    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent;
+    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm
+           focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent;
   }
   .form-textarea {
-    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent min-h-[100px];
+    @apply block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm
+           placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400
+           focus:border-transparent min-h-[100px];
   }
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
   .badge-extracted {
-    @apply badge bg-blue-50 text-blue-700;
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-50 text-blue-700;
   }
   .badge-uncertain {
-    @apply badge bg-amber-50 text-amber-700;
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-amber-50 text-amber-700;
   }
   .badge-missing {
-    @apply badge bg-red-50 text-red-700;
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-50 text-red-700;
   }
   .field-group {
     @apply space-y-1;
   }
-  .field-error {
-    @apply text-xs text-red-600 mt-1;
-  }
   .section-card {
-    @apply card mb-6;
+    @apply bg-white rounded-lg border border-slate-200 shadow-sm mb-6;
   }
   .section-title {
     @apply text-base font-semibold text-slate-900;
