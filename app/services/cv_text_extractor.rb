@@ -3,20 +3,28 @@ class CvTextExtractor
     new(document).extract
   end
 
+  def self.extract_from_upload(uploaded_file)
+    new(nil).extract_from_path(uploaded_file.tempfile.path, uploaded_file.content_type)
+  end
+
   def initialize(document)
     @document = document
   end
 
   def extract
-    blob = @document.file.blob
-    content_type = blob.content_type
+    return @document.raw_text if @document.raw_text.present?
 
+    blob = @document.file.blob
+    @document.file.open { |tmp| extract_from_path(tmp.path, blob.content_type) }
+  end
+
+  def extract_from_path(path, content_type)
     case content_type
     when "application/pdf"
-      extract_pdf
+      extract_pdf(path)
     when "application/msword",
          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      extract_docx
+      extract_docx(path)
     else
       raise "Unsupported content type: #{content_type}"
     end
@@ -24,20 +32,16 @@ class CvTextExtractor
 
   private
 
-  def extract_pdf
-    @document.file.open do |tmp|
-      reader = PDF::Reader.new(tmp.path)
-      reader.pages.map(&:text).join("\n\n")
-    end
+  def extract_pdf(path)
+    reader = PDF::Reader.new(path)
+    reader.pages.map(&:text).join("\n\n")
   rescue => e
     raise "PDF extraction failed: #{e.message}"
   end
 
-  def extract_docx
-    @document.file.open do |tmp|
-      doc  = Docx::Document.open(tmp.path)
-      doc.paragraphs.map(&:to_s).join("\n")
-    end
+  def extract_docx(path)
+    doc = Docx::Document.open(path)
+    doc.paragraphs.map(&:to_s).join("\n")
   rescue => e
     raise "DOCX extraction failed: #{e.message}"
   end

@@ -39,6 +39,14 @@ class OnboardingController < ApplicationController
       return
     end
 
+    if params[:file]
+      begin
+        @document.raw_text = CvTextExtractor.extract_from_upload(params[:file]).truncate(50_000)
+      rescue => e
+        Rails.logger.warn("Text extraction during upload failed: #{e.message}")
+      end
+    end
+
     @profile.save && @document.save
     ParseCandidateCvJob.perform_later(@document.id, api_key)
     respond_to do |format|
