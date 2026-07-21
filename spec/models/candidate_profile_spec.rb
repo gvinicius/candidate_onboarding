@@ -31,12 +31,12 @@ RSpec.describe CandidateProfile, type: :model do
 
   describe "#employed?" do
     it "returns true when desired_employment_types includes employed" do
-      profile = build(:candidate_profile, desired_employment_types: ["employed"])
+      profile = build(:candidate_profile, desired_employment_types: [ "employed" ])
       expect(profile.employed?).to be true
     end
 
     it "returns false when only self-employed" do
-      profile = build(:candidate_profile, desired_employment_types: ["self_employed"])
+      profile = build(:candidate_profile, desired_employment_types: [ "self_employed" ])
       expect(profile.employed?).to be false
     end
   end

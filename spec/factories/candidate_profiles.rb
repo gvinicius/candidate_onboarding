@@ -13,7 +13,7 @@ FactoryBot.define do
     search_status { :active }
     consent_given { true }
     consent_given_at { Time.current }
-    desired_employment_types { ["employed"] }
+    desired_employment_types { [ "employed" ] }
     available_working_days { %w[monday tuesday wednesday thursday friday] }
     max_travel_time { 30 }
   end

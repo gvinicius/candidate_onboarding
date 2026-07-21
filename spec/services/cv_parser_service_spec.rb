@@ -13,7 +13,7 @@ RSpec.describe CvParserService do
       "phone_number" => "+31612345678",
       "city"       => "Amsterdam",
       "country"    => "Netherlands",
-      "languages"  => [{ "name" => "Dutch", "level" => "native" }],
+      "languages"  => [ { "name" => "Dutch", "level" => "native" } ],
       "job_function" => "Dental hygienist",
       "years_of_experience" => 5,
       "big_number" => nil,
@@ -38,7 +38,7 @@ RSpec.describe CvParserService do
           "current_job" => true
         }
       ],
-      "skills" => ["Periodontology", "Prevention"],
+      "skills" => [ "Periodontology", "Prevention" ],
       "uncertain_fields" => []
     }
   end

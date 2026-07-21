@@ -20,10 +20,10 @@ RSpec.describe CandidateProfile, "#assign_parsed_attributes" do
       "city"          => "Amsterdam",
       "country"       => "Netherlands",
       "job_function"  => "Dental hygienist",
-      "languages"     => [{ "name" => "Dutch", "level" => "native" }],
-      "educations"    => [{ "study_course" => "Dental Hygiene", "level" => "hbo", "start_date" => "2015-09-01", "end_date" => "2019-06-30" }],
-      "work_experiences" => [{ "job_title" => "Hygienist", "company_name" => "Clinic X", "current_job" => true }],
-      "skills"        => ["Periodontology"],
+      "languages"     => [ { "name" => "Dutch", "level" => "native" } ],
+      "educations"    => [ { "study_course" => "Dental Hygiene", "level" => "hbo", "start_date" => "2015-09-01", "end_date" => "2019-06-30" } ],
+      "work_experiences" => [ { "job_title" => "Hygienist", "company_name" => "Clinic X", "current_job" => true } ],
+      "skills"        => [ "Periodontology" ],
       "uncertain_fields" => []
     }
   end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get  "/status", to: "onboarding#status",  as: :onboarding_status
     get  "/profile",  to: "onboarding#profile",        as: :onboarding_profile
     patch "/profile", to: "onboarding#update_profile", as: :onboarding_update_profile
-    get  "/skills",   to: "onboarding#skills",         as: :onboarding_skills
+    get "/skills",   to: "onboarding#skills",         as: :onboarding_skills
   end
 
   # Nested resources on candidate profile

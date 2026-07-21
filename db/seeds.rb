@@ -19,16 +19,16 @@ job_functions_data.each do |attrs|
 end
 
 skills_data = {
-  "general_dentist"           => ["Endodontics", "Restorative dentistry", "Pediatric dentistry", "Surgery", "Aligners"],
-  "dental_hygienist"          => ["Periodontology", "Prevention", "Scaling", "Patient education"],
-  "dental_assistant"          => ["Chairside assistance", "Sterilization", "Orthodontics", "Prevention"],
-  "prevention_assistant"      => ["Prevention", "Patient education", "Fluoride", "Sealants"],
-  "paro_prevention_assistant" => ["Periodontology", "Prevention", "Scaling"],
-  "orthodontic_assistant"     => ["Orthodontics", "Bracket bonding", "Retainers"],
-  "front_office"              => ["Planning", "Phone handling", "Invoicing", "Patient communication"],
-  "practice_manager"          => ["Team management", "Scheduling", "HR", "Practice operations"],
-  "dental_technician"         => ["Prosthetics", "CAD/CAM", "Crown and bridge work"],
-  "specialist"                => ["Endodontics", "Implantology", "Orthodontics", "Oral surgery", "Periodontology"]
+  "general_dentist"           => [ "Endodontics", "Restorative dentistry", "Pediatric dentistry", "Surgery", "Aligners" ],
+  "dental_hygienist"          => [ "Periodontology", "Prevention", "Scaling", "Patient education" ],
+  "dental_assistant"          => [ "Chairside assistance", "Sterilization", "Orthodontics", "Prevention" ],
+  "prevention_assistant"      => [ "Prevention", "Patient education", "Fluoride", "Sealants" ],
+  "paro_prevention_assistant" => [ "Periodontology", "Prevention", "Scaling" ],
+  "orthodontic_assistant"     => [ "Orthodontics", "Bracket bonding", "Retainers" ],
+  "front_office"              => [ "Planning", "Phone handling", "Invoicing", "Patient communication" ],
+  "practice_manager"          => [ "Team management", "Scheduling", "HR", "Practice operations" ],
+  "dental_technician"         => [ "Prosthetics", "CAD/CAM", "Crown and bridge work" ],
+  "specialist"                => [ "Endodontics", "Implantology", "Orthodontics", "Oral surgery", "Periodontology" ]
 }
 
 skills_data.each do |slug, skill_names|
