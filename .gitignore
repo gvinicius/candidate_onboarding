@@ -58,3 +58,10 @@ Thumbs.db
 /config/master.key
 /config/credentials/*.key
 "Short assignment Ruby On Rails.pdf"
+
+# Ignore key files for decrypting credentials and more.
+/config/*.key
+
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
