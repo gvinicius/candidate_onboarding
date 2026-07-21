@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     get  "/",       to: "onboarding#index",   as: :onboarding_root
     post "/upload", to: "onboarding#upload",  as: :onboarding_upload
     get  "/status", to: "onboarding#status",  as: :onboarding_status
-    get  "/profile", to: "onboarding#profile", as: :onboarding_profile
+    get  "/profile",  to: "onboarding#profile",        as: :onboarding_profile
     patch "/profile", to: "onboarding#update_profile", as: :onboarding_update_profile
+    get  "/skills",   to: "onboarding#skills",         as: :onboarding_skills
   end
 
   # Nested resources on candidate profile
