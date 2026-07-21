@@ -75,7 +75,7 @@ class CvParserService
   def parse_with_claude(text)
     client   = Anthropic::Client.new(api_key: @api_key)
     response = Timeout.timeout(100) do
-      client.messages(
+      client.messages.create(
         model: "claude-haiku-4-5-20251001",
         max_tokens: 2048,
         messages: [

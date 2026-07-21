@@ -1,5 +1,6 @@
 class ParseCandidateCvJob < ApplicationJob
   queue_as :default
+  self.log_arguments = false
 
   def perform(document_id, api_key = nil)
     document = CandidateDocument.find_by(id: document_id)
