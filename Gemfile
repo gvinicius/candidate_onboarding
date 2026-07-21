@@ -28,7 +28,7 @@ gem "docx"
 
 # Phone validation
 gem "phonelib"
-gem "pagy", "~> 9.0"
+gem "pagy", "~> 43.6"
 
 # Anthropic SDK for CV parsing
 gem "anthropic"
