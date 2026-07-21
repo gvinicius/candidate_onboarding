@@ -15,6 +15,9 @@ RSpec.describe "Onboarding", type: :request do
       end
 
       it "redirects to status page and enqueues job" do
+        allow(ENV).to receive(:fetch).and_call_original
+        allow(ENV).to receive(:[]).and_call_original
+        stub_const("ENV", ENV.to_h.merge("ANTHROPIC_API_KEY" => "test-key"))
         expect {
           post onboarding_upload_path, params: { file: pdf_file }
         }.to have_enqueued_job(ParseCandidateCvJob)

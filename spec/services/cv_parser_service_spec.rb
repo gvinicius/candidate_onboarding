@@ -50,7 +50,7 @@ RSpec.describe CvParserService do
     end
 
     it "returns a parsed hash" do
-      service = CvParserService.new(document)
+      service = CvParserService.new(document, api_key: "test-key")
       result = service.call
       expect(result).to be_a(Hash)
       expect(result["first_name"]).to eq("Jan")

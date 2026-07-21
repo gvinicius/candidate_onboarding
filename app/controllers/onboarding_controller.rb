@@ -6,6 +6,22 @@ class OnboardingController < ApplicationController
   end
 
   def upload
+    @document = CandidateDocument.new(candidate_profile: @profile)
+    @document.file.attach(params[:file]) if params[:file]
+    @document.original_filename = params[:file]&.original_filename
+    @document.content_type      = params[:file]&.content_type
+    @document.file_size         = params[:file]&.size
+    @document.document_type     = :cv
+    @document.parsing_status    = :pending
+
+    unless @document.valid?
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-errors", partial: "onboarding/errors", locals: { errors: @document.errors }) }
+        format.html { render :index, status: :unprocessable_entity }
+      end
+      return
+    end
+
     api_key = ENV["ANTHROPIC_API_KEY"].presence ||
               params[:anthropic_api_key].presence ||
               session[:anthropic_api_key]
@@ -23,25 +39,11 @@ class OnboardingController < ApplicationController
       return
     end
 
-    @document = CandidateDocument.new(candidate_profile: @profile)
-    @document.file.attach(params[:file])
-    @document.original_filename = params[:file]&.original_filename
-    @document.content_type      = params[:file]&.content_type
-    @document.file_size         = params[:file]&.size
-    @document.document_type     = :cv
-    @document.parsing_status    = :pending
-
-    if @document.valid? && @profile.save && @document.save
-      ParseCandidateCvJob.perform_later(@document.id, api_key)
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-section", partial: "onboarding/processing") }
-        format.html { redirect_to onboarding_status_path }
-      end
-    else
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-errors", partial: "onboarding/errors", locals: { errors: @document.errors }) }
-        format.html { render :index, status: :unprocessable_entity }
-      end
+    @profile.save && @document.save
+    ParseCandidateCvJob.perform_later(@document.id, api_key)
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-section", partial: "onboarding/processing") }
+      format.html { redirect_to onboarding_status_path }
     end
   end
 

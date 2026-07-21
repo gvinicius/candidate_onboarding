@@ -1,5 +1,6 @@
 # PDF assignment file - never commit
 *.pdf
+!spec/fixtures/files/*.pdf
 
 # Ruby / Rails
 *.gem
