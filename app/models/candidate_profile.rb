@@ -46,4 +46,90 @@ class CandidateProfile < ApplicationRecord
   def self_employed?
     (desired_employment_types & %w[self_employed freelance percentage_based]).any?
   end
+
+  def assign_parsed_attributes(parsed)
+    return unless parsed.is_a?(Hash)
+
+    scalar_fields = %i[first_name last_name email phone_number city country
+                       years_of_experience big_number professional_summary]
+    scalar_fields.each do |field|
+      value = parsed[field.to_s]
+      assign_attributes(field => value) if value.present?
+    end
+
+    if parsed["job_function"].present?
+      jf = JobFunction.find_by("name ILIKE ?", parsed["job_function"])
+      self.job_function = jf if jf
+    end
+
+    assign_parsed_educations(parsed["educations"])
+    assign_parsed_work_experiences(parsed["work_experiences"])
+    assign_parsed_languages(parsed["languages"])
+    assign_parsed_skills(parsed["skills"])
+  end
+
+  private
+
+  def assign_parsed_educations(list)
+    return unless list.is_a?(Array)
+    list.each do |edu|
+      next unless edu["study_course"].present?
+      educations.build(
+        institution:  edu["institution"],
+        study_course: edu["study_course"],
+        city_country: edu["city_country"],
+        level:        safe_enum(:level, Education, edu["level"]),
+        start_date:   parse_date(edu["start_date"]),
+        end_date:     parse_date(edu["end_date"])
+      )
+    end
+  end
+
+  def assign_parsed_work_experiences(list)
+    return unless list.is_a?(Array)
+    list.each do |exp|
+      next unless exp["job_title"].present? && exp["company_name"].present?
+      work_experiences.build(
+        job_title:       exp["job_title"],
+        company_name:    exp["company_name"],
+        responsibilities: exp["responsibilities"],
+        start_date:      parse_date(exp["start_date"]),
+        end_date:        parse_date(exp["end_date"]),
+        current_job:     exp["current_job"] || false
+      )
+    end
+  end
+
+  def assign_parsed_languages(list)
+    return unless list.is_a?(Array)
+    list.each do |lang|
+      next unless lang["name"].present?
+      language = Language.find_by("name ILIKE ?", lang["name"])
+      next unless language
+      level = lang["level"]&.downcase
+      level = nil unless CandidateLanguage::LEVELS.include?(level)
+      candidate_languages.build(language: language, level: level)
+    end
+  end
+
+  def assign_parsed_skills(list)
+    return unless list.is_a?(Array)
+    jf_scope = job_function ? Skill.where(job_function: job_function) : Skill.all
+    list.each do |name|
+      skill = jf_scope.find_by("name ILIKE ?", name)
+      candidate_skills.build(skill: skill) if skill
+    end
+  end
+
+  def parse_date(str)
+    return nil if str.blank?
+    Date.parse(str)
+  rescue ArgumentError
+    nil
+  end
+
+  def safe_enum(field, klass, value)
+    return nil if value.blank?
+    klass.public_send(field.to_s.pluralize).key?(value) ? value : nil
+  end
 end
