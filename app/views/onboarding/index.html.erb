@@ -1,0 +1,75 @@
+<%= content_for :title, "Upload your CV" %>
+
+<div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+  <div class="w-full max-w-lg">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-12 h-12 bg-slate-900 rounded-xl mb-4">
+        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-slate-900">Start your application</h1>
+      <p class="mt-2 text-sm text-slate-600 max-w-sm mx-auto">
+        Upload your CV. We will automatically fill in as much of your candidate profile as possible. You can review and edit everything before saving.
+      </p>
+    </div>
+
+    <div class="card" id="upload-section">
+      <div class="card-body">
+        <%= form_with url: onboarding_upload_path, method: :post, multipart: true,
+              data: { controller: "cv-upload", turbo: true },
+              class: "space-y-4" do |f| %>
+
+          <div id="drop-zone"
+               class="relative border-2 border-dashed border-slate-200 rounded-lg p-8 text-center transition-colors hover:border-slate-400 cursor-pointer"
+               data-cv-upload-target="dropZone"
+               data-action="dragover->cv-upload#dragOver dragleave->cv-upload#dragLeave drop->cv-upload#drop click->cv-upload#openPicker">
+
+            <div data-cv-upload-target="idle">
+              <svg class="mx-auto h-10 w-10 text-slate-400 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              <p class="text-sm font-medium text-slate-700">Drag &amp; drop your CV here</p>
+              <p class="text-xs text-slate-500 mt-1">or click to browse files</p>
+            </div>
+
+            <div data-cv-upload-target="selected" class="hidden">
+              <svg class="mx-auto h-10 w-10 text-green-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <p class="text-sm font-medium text-slate-700" data-cv-upload-target="filename"></p>
+              <p class="text-xs text-slate-500 mt-1">Click to change file</p>
+            </div>
+
+            <%= f.file_field :file, class: "sr-only", accept: ".pdf,.doc,.docx",
+                  data: { "cv-upload-target": "input", action: "change->cv-upload#fileSelected" } %>
+          </div>
+
+          <p class="text-xs text-slate-500 text-center">
+            Accepted: <span class="font-medium">PDF, DOC, DOCX</span> &middot; Max: <span class="font-medium">25 MB</span>
+          </p>
+
+          <div id="upload-errors"></div>
+
+          <div class="flex items-start gap-3 pt-2">
+            <%= f.check_box :consent, class: "mt-0.5 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-500", required: true, id: "consent_checkbox" %>
+            <label for="consent_checkbox" class="text-xs text-slate-600 leading-relaxed">
+              I agree that my CV and profile information may be processed to create and improve my candidate profile.
+            </label>
+          </div>
+
+          <div class="flex flex-col gap-2 pt-2">
+            <%= f.submit "Analyse CV", class: "btn-primary w-full cursor-pointer", data: { "cv-upload-target": "submitBtn" } %>
+            <%= link_to "Continue manually", onboarding_profile_path, class: "btn-secondary w-full text-center text-xs" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mt-6">
+      <span class="w-2 h-2 rounded-full bg-slate-900"></span>
+      <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+    </div>
+    <p class="text-xs text-center text-slate-500 mt-2">Step 1 of 2 — Upload CV</p>
+  </div>
+</div>

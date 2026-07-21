@@ -1,0 +1,36 @@
+<%= content_for :title, "Processing CV" %>
+
+<div class="min-h-screen flex items-center justify-center px-4 py-12">
+  <div class="w-full max-w-lg">
+    <div class="card">
+      <div class="card-body text-center py-12" data-controller="cv-status" data-cv-status-url-value="<%= onboarding_status_path(format: :json) %>">
+        <% if @can_continue_manually %>
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-amber-50 rounded-full mb-4">
+            <svg class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5C2.962 18.333 3.924 20 5.464 20z" />
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900 mb-2">CV could not be parsed</h2>
+          <p class="text-sm text-slate-600 mb-6">We weren't able to extract data from your CV, but you can still complete your profile manually.</p>
+          <%= link_to "Continue manually", onboarding_profile_path, class: "btn-primary" %>
+        <% else %>
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-50 rounded-full mb-4">
+            <svg class="w-6 h-6 text-blue-600 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900 mb-1">Analysing your CV&hellip;</h2>
+          <p class="text-sm text-slate-600 mb-6">This may take a moment. We'll redirect you automatically when it's done.</p>
+          <%= link_to "Continue manually", onboarding_profile_path, class: "text-xs text-slate-500 hover:text-slate-700 underline" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mt-6">
+      <span class="w-2 h-2 rounded-full bg-slate-200"></span>
+      <span class="w-2 h-2 rounded-full bg-slate-900"></span>
+    </div>
+    <p class="text-xs text-center text-slate-500 mt-2">Processing your CV</p>
+  </div>
+</div>

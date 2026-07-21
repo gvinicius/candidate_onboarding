@@ -1,16 +1,23 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Onboarding flow
+  scope :onboarding do
+    get  "/",       to: "onboarding#index",   as: :onboarding_root
+    post "/upload", to: "onboarding#upload",  as: :onboarding_upload
+    get  "/status", to: "onboarding#status",  as: :onboarding_status
+    get  "/profile", to: "onboarding#profile", as: :onboarding_profile
+    patch "/profile", to: "onboarding#update_profile", as: :onboarding_update_profile
+  end
+
+  # Nested resources on candidate profile
+  resources :candidate_profiles, only: [] do
+    resources :educations, only: %i[create update destroy]
+    resources :work_experiences, only: %i[create update destroy]
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root to: "onboarding#index"
 end
