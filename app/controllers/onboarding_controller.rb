@@ -48,11 +48,8 @@ class OnboardingController < ApplicationController
     end
 
     @profile.save && @document.save
-    ParseCandidateCvJob.perform_later(@document.id, api_key)
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-section", partial: "onboarding/processing") }
-      format.html { redirect_to onboarding_status_path }
-    end
+    ParseCandidateCvJob.perform_now(@document.id, api_key)
+    redirect_to onboarding_profile_path, notice: "CV analysed — please review and complete your profile."
   end
 
   def status

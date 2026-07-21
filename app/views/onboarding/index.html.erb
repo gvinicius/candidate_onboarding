@@ -97,7 +97,16 @@
           </div>
 
           <div class="flex flex-col gap-2 pt-2">
-            <%= f.submit "Analyse CV", class: "btn-primary w-full cursor-pointer", data: { "cv-upload-target": "submitBtn" } %>
+            <%= f.submit "Analyse CV",
+                  class: "btn-primary w-full cursor-pointer",
+                  data: { "cv-upload-target": "submitBtn", action: "click->cv-upload#startProcessing" } %>
+            <p class="hidden text-center text-sm text-slate-500 py-1" data-cv-upload-target="processingMsg">
+              <svg class="inline w-4 h-4 mr-1 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+              Analysing your CV… this may take up to 30 seconds.
+            </p>
             <%= link_to "Continue manually", onboarding_profile_path, class: "btn-secondary w-full text-center text-xs" %>
           </div>
         <% end %>
