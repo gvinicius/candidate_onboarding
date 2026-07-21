@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :skill do
-    name { "MyString" }
-    job_function { nil }
+    sequence(:name) { |n| "Skill #{n}" }
+    job_function
   end
 end
