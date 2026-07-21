@@ -39,12 +39,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="field-group">
             <%= f.label :first_name, "First name *", class: "form-label" %>
-            <%= f.text_field :first_name, class: "form-input", placeholder: "First name", required: true %>
+            <%= f.text_field :first_name, class: "form-input", placeholder: "First name", required: true, autocomplete: "given-name" %>
             <%= field_badge(@profile, :first_name) %>
           </div>
           <div class="field-group">
             <%= f.label :last_name, "Last name *", class: "form-label" %>
-            <%= f.text_field :last_name, class: "form-input", placeholder: "Last name", required: true %>
+            <%= f.text_field :last_name, class: "form-input", placeholder: "Last name", required: true, autocomplete: "family-name" %>
             <%= field_badge(@profile, :last_name) %>
           </div>
         </div>
@@ -52,12 +52,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="field-group">
             <%= f.label :email, "Email *", class: "form-label" %>
-            <%= f.email_field :email, class: "form-input", placeholder: "you@example.com", required: true %>
+            <%= f.email_field :email, class: "form-input", placeholder: "you@example.com", required: true, autocomplete: "email" %>
             <%= field_badge(@profile, :email) %>
           </div>
           <div class="field-group">
             <%= f.label :phone_number, "Phone number", class: "form-label" %>
-            <%= f.telephone_field :phone_number, class: "form-input", placeholder: "+31 6 12345678" %>
+            <%= f.telephone_field :phone_number, class: "form-input", placeholder: "+31 6 12345678", autocomplete: "tel" %>
             <%= field_badge(@profile, :phone_number) %>
           </div>
         </div>
@@ -65,12 +65,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="field-group">
             <%= f.label :city, "City / place of residence *", class: "form-label" %>
-            <%= f.text_field :city, class: "form-input", placeholder: "Amsterdam", required: true %>
+            <%= f.text_field :city, class: "form-input", placeholder: "Amsterdam", required: true, autocomplete: "address-level2" %>
             <%= field_badge(@profile, :city) %>
           </div>
           <div class="field-group">
             <%= f.label :country, "Country", class: "form-label" %>
-            <%= f.text_field :country, class: "form-input", placeholder: "Netherlands" %>
+            <%= f.text_field :country, class: "form-input", placeholder: "Netherlands", autocomplete: "country-name" %>
             <%= field_badge(@profile, :country) %>
           </div>
         </div>
