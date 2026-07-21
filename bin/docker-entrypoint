@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+if [ -z "${LD_PRELOAD+x}" ] && [ -f /usr/lib/*/libjemalloc.so.2 ]; then
+  export LD_PRELOAD="$(echo /usr/lib/*/libjemalloc.so.2)"
+fi
+
+if [ "${1}" = "./bin/rails" ] || [ "${1}" = "bin/rails" ] && [ "${2}" = "server" ]; then
+  for i in $(seq 1 30); do
+    if ./bin/rails db:prepare 2>/dev/null; then break; fi
+    if [ "$i" -eq 30 ]; then echo "db:prepare failed after 30 attempts"; exit 1; fi
+    sleep 2
+  done
+fi
+
+exec "${@}"
