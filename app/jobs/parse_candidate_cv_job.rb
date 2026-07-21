@@ -17,6 +17,9 @@ class ParseCandidateCvJob < ApplicationJob
         profile.save!
         document.update!(parsing_status: :completed, parsed_at: Time.current)
       end
+    rescue Timeout::Error
+      Rails.logger.error("CV parsing timed out for document #{document_id}")
+      document.update!(parsing_status: :failed, parse_error: "CV analysis timed out. Please try again.")
     rescue => e
       Rails.logger.error("CV parsing failed for document #{document_id}: #{e.message}")
       document.update!(parsing_status: :failed, parse_error: e.message)

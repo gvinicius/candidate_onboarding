@@ -1,9 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
+const MAX_POLLS = 60  // 60 × 3s = 3 minutes
+
 export default class extends Controller {
   static values = { url: String }
 
   connect() {
+    this.attempts = 0
     this.poll()
   }
 
@@ -16,6 +19,13 @@ export default class extends Controller {
   }
 
   async check() {
+    this.attempts++
+
+    if (this.attempts > MAX_POLLS) {
+      window.location.reload()
+      return
+    }
+
     try {
       const response = await fetch(this.urlValue, {
         headers: { Accept: "application/json" }

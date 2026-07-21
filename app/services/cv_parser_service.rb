@@ -73,17 +73,19 @@ class CvParserService
   private
 
   def parse_with_claude(text)
-    client   = Anthropic::Client.new(api_key: @api_key)
-    response = client.messages(
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 2048,
-      messages: [
-        {
-          role: "user",
-          content: "#{PROMPT}\n\n---CV TEXT---\n#{text.truncate(30_000)}"
-        }
-      ]
-    )
+    client   = Anthropic::Client.new(api_key: @api_key, timeout: 90)
+    response = Timeout.timeout(100) do
+      client.messages(
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 2048,
+        messages: [
+          {
+            role: "user",
+            content: "#{PROMPT}\n\n---CV TEXT---\n#{text.truncate(30_000)}"
+          }
+        ]
+      )
+    end
 
     raw_json = response.content.first.text.strip
     JSON.parse(raw_json)
