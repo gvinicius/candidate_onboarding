@@ -18,7 +18,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "RAILS_ENV=test DB_PASSWORD=postgres bin/rails server -p 3001",
+    command: "RAILS_ENV=test DB_PASSWORD=postgres bin/rails db:seed && RAILS_ENV=test DB_PASSWORD=postgres bin/rails server -p 3001",
     url: "http://localhost:3001/up",
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
