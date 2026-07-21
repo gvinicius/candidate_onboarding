@@ -2,12 +2,9 @@
 
 <div class="max-w-7xl mx-auto px-4 py-8">
   <!-- Page header -->
-  <div class="flex items-center justify-between mb-6">
-    <div>
-      <h1 class="text-xl font-bold text-slate-900">Candidate Profiles</h1>
-      <p class="text-sm text-slate-500 mt-0.5"><%= @pagy.count %> total</p>
-    </div>
-    <%= link_to "New candidate", root_path, class: "btn-primary" %>
+  <div class="mb-6">
+    <h1 class="text-xl font-bold text-slate-900">Candidate Profiles</h1>
+    <p class="text-sm text-slate-500 mt-0.5"><%= @pagy.count %> total</p>
   </div>
 
   <!-- Search -->
