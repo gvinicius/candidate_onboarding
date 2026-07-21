@@ -47,7 +47,6 @@ export default class extends Controller {
   }
 
   startProcessing() {
-    this.submitBtnTarget.disabled = true
     this.submitBtnTarget.value = "Analysing…"
     this.processingMsgTarget.classList.remove("hidden")
   }
