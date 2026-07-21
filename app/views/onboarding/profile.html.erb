@@ -1,0 +1,386 @@
+<%= content_for :title, "Complete Your Profile" %>
+
+<div class="max-w-3xl mx-auto px-4 py-10">
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="inline-flex items-center justify-center w-8 h-8 bg-slate-900 rounded-lg">
+        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </div>
+      <h1 class="text-xl font-bold text-slate-900">Review &amp; Complete Profile</h1>
+    </div>
+    <p class="text-sm text-slate-600">Review all extracted information and fill in any missing fields before saving.</p>
+
+    <!-- Legend -->
+    <div class="flex items-center gap-4 mt-3">
+      <span class="badge-extracted">Extracted from CV</span>
+      <span class="badge-uncertain">Please check</span>
+      <span class="badge-missing">Missing — required</span>
+    </div>
+  </div>
+
+  <%= form_with model: @profile, url: onboarding_update_profile_path, method: :patch,
+        data: { controller: "profile-form", turbo: false },
+        class: "space-y-6" do |f| %>
+
+    <%= render "onboarding/profile_errors", profile: @profile %>
+
+    <!-- 1. Personal Details -->
+    <div class="section-card" data-controller="profile-section">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">1. Personal Details</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body space-y-4" data-profile-section-target="content">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :first_name, "First name *", class: "form-label" %>
+            <%= f.text_field :first_name, class: "form-input", placeholder: "First name", required: true %>
+            <%= field_badge(@profile, :first_name) %>
+          </div>
+          <div class="field-group">
+            <%= f.label :last_name, "Last name *", class: "form-label" %>
+            <%= f.text_field :last_name, class: "form-input", placeholder: "Last name", required: true %>
+            <%= field_badge(@profile, :last_name) %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :email, "Email *", class: "form-label" %>
+            <%= f.email_field :email, class: "form-input", placeholder: "you@example.com", required: true %>
+            <%= field_badge(@profile, :email) %>
+          </div>
+          <div class="field-group">
+            <%= f.label :phone_number, "Phone number", class: "form-label" %>
+            <%= f.telephone_field :phone_number, class: "form-input", placeholder: "+31 6 12345678" %>
+            <%= field_badge(@profile, :phone_number) %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :city, "City / place of residence *", class: "form-label" %>
+            <%= f.text_field :city, class: "form-input", placeholder: "Amsterdam", required: true %>
+            <%= field_badge(@profile, :city) %>
+          </div>
+          <div class="field-group">
+            <%= f.label :country, "Country", class: "form-label" %>
+            <%= f.text_field :country, class: "form-input", placeholder: "Netherlands" %>
+            <%= field_badge(@profile, :country) %>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="field-group">
+          <label class="form-label">Languages</label>
+          <div class="flex flex-wrap gap-2 mb-2" id="language-chips">
+            <% @all_languages.each do |lang| %>
+              <% selected = @profile.language_ids.include?(lang.id) %>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                <input type="checkbox" name="candidate_profile[language_ids][]" value="<%= lang.id %>"
+                       <%= "checked" if selected %>
+                       class="h-3.5 w-3.5 rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+                <span class="text-sm text-slate-700"><%= lang.name %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Job Preferences -->
+    <div class="section-card" data-controller="profile-section job-preferences">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">2. Job Preferences</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body space-y-4" data-profile-section-target="content">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :job_function_id, "Desired job function *", class: "form-label" %>
+            <select name="candidate_profile[job_function_id]" id="candidate_profile_job_function_id"
+                    class="form-select" required
+                    data-action="change->profile-form#jobFunctionChanged"
+                    data-profile-form-target="jobFunctionSelect">
+              <option value="">Select a function...</option>
+              <% @job_functions.each do |jf| %>
+                <option value="<%= jf.id %>" data-slug="<%= jf.slug %>"
+                        <%= "selected" if jf.id == @profile.job_function_id %>>
+                  <%= jf.name %>
+                </option>
+              <% end %>
+            </select>
+            <%= field_badge(@profile, :job_function_id) %>
+          </div>
+          <div class="field-group">
+            <%= f.label :search_status, "Search status *", class: "form-label" %>
+            <%= f.select :search_status,
+                  options_for_select([["Active", "active"], ["Passive", "passive"], ["Inactive", "inactive"]], @profile.search_status),
+                  { include_blank: "Select status..." },
+                  class: "form-select", required: true %>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="form-label">Preferred regions (select at least one)</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <% @all_regions.each do |region| %>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="candidate_profile[region_ids][]" value="<%= region.id %>"
+                       <%= "checked" if @profile.region_ids.include?(region.id) %>
+                       class="h-3.5 w-3.5 rounded border-slate-300">
+                <span class="text-sm text-slate-700"><%= region.name %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :max_travel_time, "Max travel time (minutes) *", class: "form-label" %>
+            <%= f.number_field :max_travel_time, class: "form-input", min: 0, placeholder: "30" %>
+          </div>
+          <div class="field-group">
+            <label class="form-label">Transport types</label>
+            <div class="flex flex-wrap gap-3 mt-1">
+              <% CandidateProfile::TRANSPORT_OPTIONS.each do |opt| %>
+                <label class="inline-flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" name="candidate_profile[transport_types][]" value="<%= opt %>"
+                         <%= "checked" if @profile.transport_types.include?(opt) %>
+                         class="h-3.5 w-3.5 rounded border-slate-300">
+                  <span class="text-sm text-slate-700"><%= opt.humanize %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :reason_for_looking, "Reason for looking", class: "form-label" %>
+          <%= f.text_area :reason_for_looking, class: "form-textarea", placeholder: "Briefly explain why you are looking for a new role..." %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Employment & Compensation -->
+    <div class="section-card" data-controller="profile-section employment">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">3. Employment &amp; Compensation</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body space-y-4" data-profile-section-target="content">
+        <div class="field-group">
+          <label class="form-label">Desired employment type (select at least one)</label>
+          <div class="flex flex-wrap gap-4 mt-1">
+            <% CandidateProfile::EMPLOYMENT_TYPES.each do |type| %>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="candidate_profile[desired_employment_types][]" value="<%= type %>"
+                       <%= "checked" if @profile.desired_employment_types.include?(type) %>
+                       class="h-3.5 w-3.5 rounded border-slate-300"
+                       data-action="change->employment#employmentTypeChanged"
+                       data-employment-target="employmentCheckbox">
+                <span class="text-sm text-slate-700"><%= type.humanize %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Salary — shown when employed -->
+          <div class="field-group" data-employment-target="salaryField">
+            <%= f.label :desired_gross_salary, "Desired gross salary (€/month)", class: "form-label" %>
+            <%= f.number_field :desired_gross_salary, class: "form-input", min: 0, step: "0.01", placeholder: "3500" %>
+          </div>
+
+          <!-- Percentage — shown when self-employed -->
+          <div class="field-group" data-employment-target="percentageField">
+            <%= f.label :desired_percentage, "Desired percentage (%)", class: "form-label" %>
+            <%= f.number_field :desired_percentage, class: "form-input", min: 0, max: 100, step: "0.1", placeholder: "35" %>
+          </div>
+        </div>
+
+        <!-- BIG registration — shown when dentist/hygienist/specialist -->
+        <div data-profile-form-target="bigSection">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="field-group">
+              <%= f.label :big_registration_status, "BIG registration status", class: "form-label" %>
+              <%= f.select :big_registration_status,
+                    options_for_select([
+                      ["BIG registered", "big_registered"],
+                      ["In progress", "in_progress"],
+                      ["Under supervision", "under_supervision"],
+                      ["Not applicable", "not_applicable"]
+                    ], @profile.big_registration_status),
+                    { include_blank: "Select..." },
+                    class: "form-select",
+                    data: { "profile-form-target": "bigStatusSelect", action: "change->profile-form#bigStatusChanged" } %>
+            </div>
+            <div class="field-group" data-profile-form-target="bigNumberField">
+              <%= f.label :big_number, "BIG number", class: "form-label" %>
+              <%= f.text_field :big_number, class: "form-input", placeholder: "Your BIG registration number" %>
+              <%= field_badge(@profile, :big_number) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Average daily revenue — for dentists etc. -->
+          <div class="field-group" data-profile-form-target="revenueField">
+            <%= f.label :average_daily_revenue, "Average daily revenue (€)", class: "form-label" %>
+            <%= f.number_field :average_daily_revenue, class: "form-input", min: 0, step: "0.01", placeholder: "1200" %>
+          </div>
+
+          <div class="field-group">
+            <%= f.label :years_of_experience, "Years of combined dental experience *", class: "form-label" %>
+            <%= f.number_field :years_of_experience, class: "form-input", min: 0, placeholder: "5", required: true %>
+            <%= field_badge(@profile, :years_of_experience) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Education -->
+    <div class="section-card" data-controller="profile-section nested-form" data-nested-form-type-value="education">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">4. Education</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body" data-profile-section-target="content">
+        <div id="educations-container" data-nested-form-target="container">
+          <%= f.fields_for :educations do |edu_f| %>
+            <%= render "onboarding/education_fields", f: edu_f %>
+          <% end %>
+        </div>
+        <button type="button" class="btn-secondary btn-sm mt-4 flex items-center gap-1"
+                data-action="click->nested-form#add"
+                data-nested-form-template-value="education">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          Add education
+        </button>
+      </div>
+    </div>
+
+    <!-- 5. Work Experience -->
+    <div class="section-card" data-controller="profile-section nested-form" data-nested-form-type-value="work_experience">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">5. Work Experience</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body" data-profile-section-target="content">
+        <div id="work-experiences-container" data-nested-form-target="container">
+          <%= f.fields_for :work_experiences do |exp_f| %>
+            <%= render "onboarding/work_experience_fields", f: exp_f %>
+          <% end %>
+        </div>
+        <button type="button" class="btn-secondary btn-sm mt-4 flex items-center gap-1"
+                data-action="click->nested-form#add"
+                data-nested-form-template-value="work_experience">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          Add work experience
+        </button>
+      </div>
+    </div>
+
+    <!-- 6. Skills -->
+    <div class="section-card" data-controller="profile-section">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">6. Skills</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body" data-profile-section-target="content">
+        <div id="skills-container" data-profile-form-target="skillsContainer">
+          <% if @profile.job_function.nil? %>
+            <p class="text-sm text-slate-500">Select a job function above to see relevant skills.</p>
+          <% else %>
+            <%= render "onboarding/skills_checkboxes", profile: @profile, skills: @profile.job_function.skills %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Availability -->
+    <div class="section-card" data-controller="profile-section">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">7. Availability</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body space-y-4" data-profile-section-target="content">
+        <div class="field-group">
+          <label class="form-label">Available working days (select at least one)</label>
+          <div class="flex flex-wrap gap-3 mt-1">
+            <% CandidateProfile::WORKING_DAYS.each do |day| %>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="candidate_profile[available_working_days][]" value="<%= day %>"
+                       <%= "checked" if @profile.available_working_days.include?(day) %>
+                       class="h-3.5 w-3.5 rounded border-slate-300">
+                <span class="text-sm text-slate-700"><%= day.capitalize %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="field-group">
+            <%= f.label :available_from, "Available from *", class: "form-label" %>
+            <%= f.date_field :available_from, class: "form-input" %>
+          </div>
+          <div class="field-group">
+            <%= f.label :notice_period, "Notice period", class: "form-label" %>
+            <%= f.text_field :notice_period, class: "form-input", placeholder: "e.g. 1 month" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Additional Information -->
+    <div class="section-card" data-controller="profile-section">
+      <div class="card-header flex items-center justify-between cursor-pointer" data-action="click->profile-section#toggle">
+        <h2 class="section-title">8. Additional Information</h2>
+        <svg class="w-4 h-4 text-slate-500 transition-transform" data-profile-section-target="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <div class="card-body space-y-4" data-profile-section-target="content">
+        <div class="field-group">
+          <%= f.label :professional_summary, "Professional summary", class: "form-label" %>
+          <div class="badge-extracted inline-flex mb-1">AI suggested — please review</div>
+          <%= f.text_area :professional_summary, class: "form-textarea", placeholder: "A brief summary of your professional background..." %>
+        </div>
+        <div class="field-group">
+          <%= f.label :motivation_for_employer, "Motivation for employer", class: "form-label" %>
+          <%= f.text_area :motivation_for_employer, class: "form-textarea", placeholder: "Why are you interested in this type of role?" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="flex items-center justify-between pt-2 pb-8">
+      <p class="text-xs text-slate-500">* Required fields</p>
+      <div class="flex gap-3">
+        <%= link_to "Back", onboarding_root_path, class: "btn-secondary" %>
+        <%= f.submit "Save profile", class: "btn-primary cursor-pointer" %>
+      </div>
+    </div>
+  <% end %>
+</div>

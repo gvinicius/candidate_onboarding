@@ -1,0 +1,45 @@
+<div class="border border-slate-100 rounded-lg p-4 mb-3 relative" data-nested-form-target="item">
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :_destroy, class: "destroy-field" %>
+
+  <button type="button"
+          class="absolute top-3 right-3 text-slate-400 hover:text-red-500 transition-colors"
+          data-action="click->nested-form#remove">
+    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div class="field-group">
+      <%= f.label :study_course, "Study / course *", class: "form-label" %>
+      <%= f.text_field :study_course, class: "form-input", placeholder: "Dental Hygiene", required: true %>
+    </div>
+    <div class="field-group">
+      <%= f.label :institution, "Institution", class: "form-label" %>
+      <%= f.text_field :institution, class: "form-input", placeholder: "HBO Mondhygiëne" %>
+    </div>
+    <div class="field-group">
+      <%= f.label :level, "Level", class: "form-label" %>
+      <%= f.select :level,
+            options_for_select([
+              ["MBO", "mbo"], ["HBO", "hbo"], ["Bachelor", "bachelor"],
+              ["Master", "master"], ["Doctor", "doctor"], ["Course", "course"]
+            ], f.object.level),
+            { include_blank: "Select level..." },
+            class: "form-select" %>
+    </div>
+    <div class="field-group">
+      <%= f.label :city_country, "City and country", class: "form-label" %>
+      <%= f.text_field :city_country, class: "form-input", placeholder: "Utrecht, Netherlands" %>
+    </div>
+    <div class="field-group">
+      <%= f.label :start_date, "Start date", class: "form-label" %>
+      <%= f.date_field :start_date, class: "form-input" %>
+    </div>
+    <div class="field-group">
+      <%= f.label :end_date, "End date", class: "form-label" %>
+      <%= f.date_field :end_date, class: "form-input" %>
+    </div>
+  </div>
+</div>

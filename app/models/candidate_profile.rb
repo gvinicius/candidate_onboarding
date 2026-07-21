@@ -11,6 +11,9 @@ class CandidateProfile < ApplicationRecord
   has_many :candidate_regions, dependent: :destroy
   has_many :regions, through: :candidate_regions
 
+  accepts_nested_attributes_for :educations, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :work_experiences, allow_destroy: true, reject_if: :all_blank
+
   enum :search_status, { active: 0, passive: 1, inactive: 2 }
   enum :big_registration_status, {
     big_registered: 0,

@@ -1,0 +1,13 @@
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+  <% skills.each do |skill| %>
+    <label class="inline-flex items-center gap-2 cursor-pointer">
+      <input type="checkbox" name="candidate_profile[skill_ids][]" value="<%= skill.id %>"
+             <%= "checked" if profile.skill_ids.include?(skill.id) %>
+             class="h-3.5 w-3.5 rounded border-slate-300 text-slate-900 focus:ring-slate-500">
+      <span class="text-sm text-slate-700"><%= skill.name %></span>
+    </label>
+  <% end %>
+</div>
+<% if skills.empty? %>
+  <p class="text-sm text-slate-500">No skills defined for this job function.</p>
+<% end %>

@@ -51,15 +51,26 @@ class OnboardingController < ApplicationController
   end
 
   def profile
-    @profile = current_profile
-    redirect_to onboarding_root_path unless @profile
+    @profile = current_profile || redirect_to(onboarding_root_path) { return }
+    @profile.educations.build if @profile.educations.empty?
+    @profile.work_experiences.build if @profile.work_experiences.empty?
+    load_form_data
+  end
+
+  def skills
+    job_function = JobFunction.find_by(id: params[:job_function_id])
+    @skills  = job_function ? job_function.skills.order(:name) : []
+    @profile = current_profile || CandidateProfile.new
+    render partial: "onboarding/skills_checkboxes", locals: { profile: @profile, skills: @skills }
   end
 
   def update_profile
     @profile = current_profile
     if @profile.update(profile_params)
+      OnboardingCompletedNotificationJob.perform_later(@profile.id)
       redirect_to root_path, notice: "Profile saved successfully!"
     else
+      load_form_data
       render :profile, status: :unprocessable_entity
     end
   end
@@ -94,6 +105,12 @@ class OnboardingController < ApplicationController
     elsif session[:candidate_profile_id]
       CandidateProfile.find_by(id: session[:candidate_profile_id])
     end
+  end
+
+  def load_form_data
+    @job_functions = JobFunction.order(:position)
+    @all_languages = Language.order(:name)
+    @all_regions   = Region.order(:name)
   end
 
   def profile_params
