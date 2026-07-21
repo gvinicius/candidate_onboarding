@@ -60,6 +60,16 @@ class CvParserService
   end
 
   def call
+    if Rails.env.test? && ENV["STUB_CV_PARSER"].present?
+      return {
+        "first_name" => "Test", "last_name" => "Candidate",
+        "email" => "test@example.com", "city" => "Amsterdam",
+        "country" => "Netherlands", "job_function" => "Dental hygienist",
+        "years_of_experience" => 3, "languages" => [], "educations" => [],
+        "work_experiences" => [], "skills" => [], "uncertain_fields" => []
+      }
+    end
+
     raise "ANTHROPIC_API_KEY is not configured" unless @api_key.present?
 
     text = @document.raw_text.presence || begin

@@ -33,17 +33,18 @@ test.describe("Candidate Onboarding — CV Upload", () => {
     await expect(page.getByText("Review & Complete Profile")).toBeVisible();
   });
 
-  test("uploading a PDF submits the form and shows analysing state", async ({ page }) => {
+  test("full upload flow: PDF + key → redirects to profile", async ({ page }) => {
     const fileInput = page.locator("input[type='file']");
     await fileInput.setInputFiles(path.join(__dirname, "../../spec/fixtures/files/sample.pdf"));
     await expect(page.getByText("sample.pdf")).toBeVisible();
 
     await page.locator("#consent_checkbox").check();
 
-    const submitBtn = page.getByRole("button", { name: /analyse cv/i });
-    await submitBtn.click();
+    await page.getByRole("button", { name: /analyse cv/i }).click();
 
-    await expect(page.locator("[data-cv-upload-target='processingMsg']")).toBeVisible({ timeout: 3000 });
+    await expect(page).toHaveURL(/\/onboarding\/profile/, { timeout: 15000 });
+    await expect(page.getByText("Review & Complete Profile")).toBeVisible();
+    await expect(page.locator("input[name='candidate_profile[first_name]']")).toHaveValue("Test");
   });
 });
 
