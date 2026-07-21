@@ -6,8 +6,16 @@ class OnboardingController < ApplicationController
   end
 
   def upload
-    unless ENV["ANTHROPIC_API_KEY"].present?
-      @error = "CV analysis is not configured. Please contact support or continue manually."
+    api_key = ENV["ANTHROPIC_API_KEY"].presence ||
+              params[:anthropic_api_key].presence ||
+              session[:anthropic_api_key]
+
+    if params[:anthropic_api_key].present?
+      session[:anthropic_api_key] = params[:anthropic_api_key]
+    end
+
+    unless api_key.present?
+      @error = "No API key configured. Enter your Anthropic API key above or continue manually."
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-errors", partial: "onboarding/errors", locals: { message: @error }) }
         format.html { flash.now[:alert] = @error; render :index, status: :service_unavailable }
@@ -24,7 +32,7 @@ class OnboardingController < ApplicationController
     @document.parsing_status    = :pending
 
     if @document.valid? && @profile.save && @document.save
-      ParseCandidateCvJob.perform_later(@document.id)
+      ParseCandidateCvJob.perform_later(@document.id, api_key)
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-section", partial: "onboarding/processing") }
         format.html { redirect_to onboarding_status_path }

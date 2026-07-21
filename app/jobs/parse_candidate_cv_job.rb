@@ -1,14 +1,14 @@
 class ParseCandidateCvJob < ApplicationJob
   queue_as :default
 
-  def perform(document_id)
+  def perform(document_id, api_key = nil)
     document = CandidateDocument.find_by(id: document_id)
     return unless document
 
     document.update!(parsing_status: :processing)
 
     begin
-      parser  = CvParserService.new(document)
+      parser  = CvParserService.new(document, api_key: api_key)
       result  = parser.call
       profile = document.candidate_profile
 

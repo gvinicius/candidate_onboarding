@@ -54,12 +54,13 @@ class CvParserService
     Return ONLY the JSON object, no other text.
   PROMPT
 
-  def initialize(document)
+  def initialize(document, api_key: nil)
     @document = document
+    @api_key  = api_key.presence || ENV["ANTHROPIC_API_KEY"]
   end
 
   def call
-    raise "ANTHROPIC_API_KEY is not configured" unless ENV["ANTHROPIC_API_KEY"].present?
+    raise "ANTHROPIC_API_KEY is not configured" unless @api_key.present?
 
     text = CvTextExtractor.call(@document)
     @document.update_column(:raw_text, text.truncate(50_000))
@@ -69,7 +70,7 @@ class CvParserService
   private
 
   def parse_with_claude(text)
-    client   = Anthropic::Client.new(api_key: ENV.fetch("ANTHROPIC_API_KEY"))
+    client   = Anthropic::Client.new(api_key: @api_key)
     response = client.messages(
       model: "claude-haiku-4-5-20251001",
       max_tokens: 2048,

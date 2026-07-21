@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["dropZone", "input", "idle", "selected", "filename", "submitBtn"]
+  static targets = ["dropZone", "input", "idle", "selected", "filename", "submitBtn", "apiKeyInput", "eyeOpen", "eyeClosed"]
 
   connect() {
     document.addEventListener("dragover", (e) => e.preventDefault())
@@ -44,5 +44,14 @@ export default class extends Controller {
     this.selectedTarget.classList.remove("hidden")
     this.filenameTarget.textContent = name
     this.dropZoneTarget.classList.add("border-green-300", "bg-green-50")
+  }
+
+  toggleApiKey(event) {
+    event.preventDefault()
+    const input = this.apiKeyInputTarget
+    const isPassword = input.type === "password"
+    input.type = isPassword ? "text" : "password"
+    this.eyeOpenTarget.classList.toggle("hidden", isPassword)
+    this.eyeClosedTarget.classList.toggle("hidden", !isPassword)
   }
 }
