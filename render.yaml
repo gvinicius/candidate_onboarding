@@ -14,8 +14,6 @@ services:
         generateValue: true
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: SOLID_QUEUE_IN_PUMA
-        value: "true"
       - key: ANTHROPIC_API_KEY
         sync: false
       - key: DATABASE_URL
