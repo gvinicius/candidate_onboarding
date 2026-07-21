@@ -6,6 +6,15 @@ class OnboardingController < ApplicationController
   end
 
   def upload
+    unless ENV["ANTHROPIC_API_KEY"].present?
+      @error = "CV analysis is not configured. Please contact support or continue manually."
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("upload-errors", partial: "onboarding/errors", locals: { message: @error }) }
+        format.html { flash.now[:alert] = @error; render :index, status: :service_unavailable }
+      end
+      return
+    end
+
     @document = CandidateDocument.new(candidate_profile: @profile)
     @document.file.attach(params[:file])
     @document.original_filename = params[:file]&.original_filename

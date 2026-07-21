@@ -1,0 +1,395 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+5 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 612 792 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (anonymous) /CreationDate (D:20260708163800-03'00') /Creator (anonymous) /Keywords () /ModDate (D:20260708163800-03'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (unspecified) /Title (untitled) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 1 /Kids [ 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 16811
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+.121569 .305882 .47451 rg
+BT /F2 18 Tf 21.6 TL ET
+BT 1 0 0 1 211.959 759.72 Tm (Vinicius Lins Gesteira) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 8.8 Tf 10.56 TL ET
+BT 1 0 0 1 148.5064 746.72 Tm (Senior Software Engineer | Node.js & Full Stack Developer | Technical Lead) Tj T* ET
+.333333 .333333 .333333 rg
+BT /F1 6.5 Tf 7.8 TL ET
+BT 1 0 0 1 141.8458 737.22 Tm (+55 71 9962-79321 | Cama\347ari, Bahia, Brazil | vlinsufba@gmail.com | linkedin.com/in/vinicius-gesteira-98a842132) Tj T* ET
+.933333 .956863 .972549 rg
+n 20.48 17.28 154.88 713.04 re f*
+BT /F2 7.1 Tf 8.52 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 24.48 726.82 Tm (TECHNICAL SKILLS) Tj T* ET
+.717647 .788235 .85098 RG
+.4 w
+n 24.48 724.72 m 171.36 724.72 l S
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 719.02 Tm (Languages:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 61.7048 719.02 Tm (TypeScript, JavaScript, Ruby, Python,) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 712.07 Tm (Rust, Go, Scala, Elixir) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 704.92 Tm (Backend:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 54.68328 704.92 Tm (Node.js, Ruby on Rails, GraphQL, gRPC,) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 697.97 Tm (REST APIs, Sidekiq, RabbitMQ) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 690.82 Tm (Frontend:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 55.72608 690.82 Tm (Next.js, React.js, TypeScript, HTML/CSS,) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 683.87 Tm (Responsive Design) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 676.72 Tm (Databases:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 59.95416 676.72 Tm (PostgreSQL, Database Schema Design,) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 669.77 Tm (Query Optimization, Data Migration) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 662.62 Tm (Cloud/DevOps:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 71.88632 662.62 Tm (AWS, Google Cloud Platform) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 655.67 Tm (\(GCP\), CI/CD Pipelines, Docker) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 648.52 Tm (AI/ML:) Tj T* ET
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 45.54456 648.52 Tm (LLM Integration, Prompt Engineering,) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 6.32 Tf 7.584 TL ET
+BT 1 0 0 1 24.48 641.57 Tm (OpenAI API, Anthropic API) Tj T* ET
+BT /F2 7.1 Tf 8.52 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 24.48 633.42 Tm (EDUCATION) Tj T* ET
+.717647 .788235 .85098 RG
+.4 w
+n 24.48 631.32 m 171.36 631.32 l S
+.133333 .133333 .133333 rg
+BT /F2 6.75 Tf 8.1 TL ET
+BT 1 0 0 1 24.48 625.62 Tm (Bachelor of Science in) Tj T* ET
+BT 1 0 0 1 24.48 618.27 Tm (Information Systems) Tj T* ET
+BT /F1 6.3 Tf 7.56 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 24.48 610.72 Tm (Universidade Federal da Bahia, Brazil | 2017) Tj T* ET
+BT /F2 7.1 Tf 8.52 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 726.82 Tm (PROFESSIONAL EXPERIENCE) Tj T* ET
+.717647 .788235 .85098 RG
+.4 w
+n 182.16 724.72 m 587.52 724.72 l S
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 719.02 Tm (Founder & Senior Software Engineer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 711.12 Tm (Vinicde \(Self-Employed\) | Cama\347ari, Brazil | Jun 2025 \226 Present) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 704.12 Tm (Node.js, Ruby on Rails, TypeScript, Next.js, Rust, Python, RabbitMQ, PostgreSQL, GraphQL, gRPC, OpenAI, Anthropic) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 697.35 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 697.35 Tm (Architecting vending machine software solutions with Node.js and Ruby on Rails, message queue workflows, and background job processing for) Tj T* ET
+BT 1 0 0 1 189.36 691 Tm (high-availability operations.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 684.53 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 684.53 Tm (Delivered a full AI agent and domain-specific chatbot for accounting workflows in 3 months \(50% ahead of 6-month estimate\), using TypeScript, Scala,) Tj T* ET
+BT 1 0 0 1 189.36 678.18 Tm (Ruby, and Elixir across functional programming workflows.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 671.71 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 671.71 Tm (Designing GraphQL, gRPC, and RESTful APIs with database schemas optimized for e-commerce solutions, including Next.js interfaces where) Tj T* ET
+BT 1 0 0 1 189.36 665.36 Tm (appropriate.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 657.09 Tm (Senior Software Engineer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 649.19 Tm (NEXTON \(Consultancy\) | US-Remote from S\343o Paulo, Brazil | Jun 2024 \226 Jun 2025) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 642.19 Tm (Node.js, Ruby on Rails, TypeScript, Next.js, React.js, GraphQL, PostgreSQL, RabbitMQ, Rust, LLMs) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 635.42 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 635.42 Tm (Implementing full stack solutions for financial sector clients with Node.js, Ruby on Rails, TypeScript, and React/Next.js, including RabbitMQ queue) Tj T* ET
+BT 1 0 0 1 189.36 629.07 Tm (management and Rust-based textual search services.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 622.6 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 622.6 Tm (Integrated LLMs into core product workflows with prompt orchestration and fine-tuning for internal automation and user-facing features.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 614.33 Tm (Technical Lead & Software Engineer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 606.43 Tm (Lillio \(formerly HiMama\) | Toronto, Canada \(Remote from Brazil\) | Jul 2022 \226 Apr 2024) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 599.43 Tm (Node.js, Ruby on Rails, TypeScript, Next.js, React.js, PostgreSQL, Sidekiq, Rust, LLMs) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 592.66 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 592.66 Tm (Led integration of large language models into production systems, enabling smart summarization, classification, and generation features.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 586.19 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 586.19 Tm (Directed a team of developers in adopting TypeScript, React.js, and Next.js patterns, emphasizing interactive and responsive design.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 579.72 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 579.72 Tm (Oversaw backend operations including advanced PostgreSQL management, Sidekiq implementation for background jobs, Node.js integrations, and Rust) Tj T* ET
+BT 1 0 0 1 189.36 573.37 Tm (services for web scraping.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 566.9 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 566.9 Tm (Provided technical leadership in agile project management, promoting best practices in code quality and test-driven development.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 558.63 Tm (Software Engineering Specialist) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 550.73 Tm (Cloudwalk | S\343o Paulo, Brazil | Jan 2022 \226 Jul 2022) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 543.73 Tm (Node.js, Ruby on Rails, TypeScript, PostgreSQL, Sidekiq, Go, GCP) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 536.96 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 536.96 Tm (Engineered Node.js and Ruby on Rails services optimized for cloud environments, including database schema design and data migrations.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 530.49 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 530.49 Tm (Built CI/CD pipelines in Go and utilized Sidekiq for efficient background job management.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 522.22 Tm (Technical Lead & Senior Ruby Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 514.32 Tm (Globant | S\343o Paulo, Brazil | Sep 2020 \226 Jan 2022) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 507.32 Tm (Node.js, Ruby on Rails, TypeScript, Python, Go, Rust, AWS, RabbitMQ) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 500.55 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 500.55 Tm (Led design and implementation of Node.js and Ruby on Rails microservices deployed on AWS, managing a team of developers and guiding RabbitMQ) Tj T* ET
+BT 1 0 0 1 189.36 494.2 Tm (integration for service communication.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 487.73 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 487.73 Tm (Enhanced system performance through caching mechanisms and service-oriented architecture adjustments; developed and enforced coding and testing) Tj T* ET
+BT 1 0 0 1 189.36 481.38 Tm (standards.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 473.11 Tm (Senior React and Node.js Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 465.21 Tm (DB Server \(Outsourcing\) | S\343o Paulo, Brazil | Dec 2019 \226 Sep 2020) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 458.21 Tm (Node.js, TypeScript, Next.js, React.js, Google Cloud) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 451.44 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 451.44 Tm (Spearheaded development of scalable web applications with Node.js, TypeScript, React.js, and Next.js patterns, designing robust API services for) Tj T* ET
+BT 1 0 0 1 189.36 445.09 Tm (real-time functionality.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 438.62 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 438.62 Tm (Collaborated with cloud architects on GCP deployments; led sprint planning to ensure deliverables aligned with client expectations.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 430.35 Tm (Ruby on Rails and React Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 422.45 Tm (Bionexo/Mooven \(Healthcare\) | S\343o Paulo, Brazil | Feb 2019 \226 Dec 2019) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 415.45 Tm (Node.js, Ruby on Rails, TypeScript, Next.js, React.js, PostgreSQL) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 408.68 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 408.68 Tm (Developed healthcare applications with Node.js, Ruby on Rails, TypeScript, and React, maintaining high compliance with medical data security and) Tj T* ET
+BT 1 0 0 1 189.36 402.33 Tm (privacy standards.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 395.86 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 395.86 Tm (Conducted performance optimization for large datasets using advanced caching techniques; collaborated with healthcare professionals to tailor patient) Tj T* ET
+BT 1 0 0 1 189.36 389.51 Tm (management features.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 381.24 Tm (Node.js Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 373.34 Tm (Nuuvem \(E-commerce\) | Rio de Janeiro, Brazil | Jun 2018 \226 Feb 2019) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 366.34 Tm (Node.js, Ruby on Rails, TypeScript, Next.js, PostgreSQL, Python, Go) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 359.57 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 359.57 Tm (Engineered high-traffic e-commerce systems for digital distribution with Node.js, Ruby on Rails, and TypeScript, focusing on scalability and transaction) Tj T* ET
+BT 1 0 0 1 189.36 353.22 Tm (security.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 346.75 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 346.75 Tm (Conducted load testing for system reliability under peak traffic; implemented web scrapers in Python and Go.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 338.48 Tm (Ruby on Rails Web Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 330.58 Tm (Total Commit - Software House/Startup | Rio de Janeiro, Brazil | Oct 2017 \226 Jun 2018) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 323.58 Tm (Node.js, Ruby on Rails, JavaScript, TypeScript) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 316.81 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 316.81 Tm (Designed and developed dynamic e-commerce solutions with Node.js and Ruby on Rails, tailored to client specifications including real-time inventory) Tj T* ET
+BT 1 0 0 1 189.36 310.46 Tm (management and user profile analytics.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 303.99 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 303.99 Tm (Led a team of developers in agile project settings, improving productivity and project delivery timelines through effective sprint management.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 295.72 Tm (Node.js Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 287.82 Tm (Freelance | Salvador, Brazil | Aug 2016 \226 Sep 2017) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 280.82 Tm (Node.js, Ruby on Rails, JavaScript, TypeScript, PostgreSQL) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 274.05 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 274.05 Tm (Developed custom-built applications with Node.js and Ruby on Rails for various business sectors, focusing on high modularity and code reusability.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 267.58 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 267.58 Tm (Provided technical leadership in migrating legacy systems to modern Ruby on Rails and Node.js applications, ensuring seamless data integration.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 259.31 Tm (Ruby on Rails Web Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 251.41 Tm (RIP/KAEFFER - Outsourcing | Cama\347ari, Brazil | Jun 2015 \226 Aug 2016) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 244.41 Tm (Node.js, Ruby on Rails, JavaScript, PostgreSQL) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 237.64 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 237.64 Tm (Implemented robust Node.js and Ruby on Rails solutions for industrial and construction project management systems, enhancing operational efficiency) Tj T* ET
+BT 1 0 0 1 189.36 231.29 Tm (and data accuracy.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 224.82 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 224.82 Tm (Collaborated with project managers and engineers to ensure software solutions aligned with project specifications and industry standards.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F2 7.45 Tf 8.94 TL ET
+BT 1 0 0 1 182.16 216.55 Tm (Freelance Ruby on Rails Web Developer) Tj T* ET
+BT /F1 6.22 Tf 7.464 TL ET
+.333333 .333333 .333333 rg
+BT 1 0 0 1 182.16 208.65 Tm (Freelance | Salvador, Brazil | Jul 2014 \226 Jun 2015) Tj T* ET
+BT /F3 6 Tf 7.2 TL ET
+.121569 .305882 .47451 rg
+BT 1 0 0 1 182.16 201.65 Tm (Node.js, Ruby on Rails, JavaScript) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 194.88 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 194.88 Tm (Developed web applications with Node.js and Ruby on Rails, ranging from e-commerce platforms to content management systems.) Tj T* ET
+.133333 .133333 .133333 rg
+BT /F1 5.85 Tf 7.02 TL ET
+BT 1 0 0 1 182.16 188.41 Tm (-) Tj T* ET
+BT 1 0 0 1 189.36 188.41 Tm (Provided ongoing maintenance and feature upgrades, improving functionality and extending system lifespans.) Tj T* ET
+ 
+endstream
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000446 00000 n 
+0000000639 00000 n 
+0000000707 00000 n 
+0000000968 00000 n 
+0000001027 00000 n 
+trailer
+<<
+/ID 
+[<5082dd12d9540be194ee112a32ca992c><5082dd12d9540be194ee112a32ca992c>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 10
+>>
+startxref
+17890
+%%EOF

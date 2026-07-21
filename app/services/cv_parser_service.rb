@@ -59,6 +59,8 @@ class CvParserService
   end
 
   def call
+    raise "ANTHROPIC_API_KEY is not configured" unless ENV["ANTHROPIC_API_KEY"].present?
+
     text = CvTextExtractor.call(@document)
     @document.update_column(:raw_text, text.truncate(50_000))
     parse_with_claude(text)
