@@ -48,8 +48,8 @@ class OnboardingController < ApplicationController
     end
 
     @profile.save && @document.save
-    ParseCandidateCvJob.perform_now(@document.id, api_key)
-    redirect_to onboarding_profile_path, notice: "CV analysed — please review and complete your profile."
+    ParseCandidateCvJob.perform_later(@document.id, api_key)
+    redirect_to onboarding_status_path
   end
 
   def status

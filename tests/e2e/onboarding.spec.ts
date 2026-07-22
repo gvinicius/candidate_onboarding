@@ -33,7 +33,7 @@ test.describe("Candidate Onboarding — CV Upload", () => {
     await expect(page.getByText("Review & Complete Profile")).toBeVisible();
   });
 
-  test("full upload flow: PDF + key → redirects to profile", async ({ page }) => {
+  test("full upload flow: PDF → redirects to profile", async ({ page }) => {
     const fileInput = page.locator("input[type='file']");
     await fileInput.setInputFiles(path.join(__dirname, "../../spec/fixtures/files/sample.pdf"));
     await expect(page.getByText("sample.pdf")).toBeVisible();
@@ -42,6 +42,7 @@ test.describe("Candidate Onboarding — CV Upload", () => {
 
     await page.getByRole("button", { name: /analyse cv/i }).click();
 
+    // Upload → status (job runs inline in test) → immediate redirect to profile
     await expect(page).toHaveURL(/\/onboarding\/profile/, { timeout: 15000 });
     await expect(page.getByText("Review & Complete Profile")).toBeVisible();
     await expect(page.locator("input[name='candidate_profile[first_name]']")).toHaveValue("Test");

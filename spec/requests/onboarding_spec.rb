@@ -14,11 +14,11 @@ RSpec.describe "Onboarding", type: :request do
         fixture_file_upload(Rails.root.join("spec/fixtures/files/sample.pdf"), "application/pdf")
       end
 
-      it "runs CV analysis and redirects to profile" do
+      it "runs CV analysis and redirects to status page" do
         stub_const("ENV", ENV.to_h.merge("ANTHROPIC_API_KEY" => "test-key"))
         allow_any_instance_of(CvParserService).to receive(:call).and_return({})
         post onboarding_upload_path, params: { file: pdf_file }
-        expect(response).to redirect_to(onboarding_profile_path)
+        expect(response).to redirect_to(onboarding_status_path)
       end
     end
 
