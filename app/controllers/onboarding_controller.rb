@@ -56,6 +56,7 @@ class OnboardingController < ApplicationController
     @document = @profile&.candidate_documents&.order(:created_at)&.last
     respond_to do |format|
       format.json do
+        response.set_header("Cache-Control", "no-store")
         if @document&.completed?
           render json: { status: "completed", redirect_url: onboarding_profile_path }
         elsif @document&.failed?
