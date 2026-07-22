@@ -20,7 +20,7 @@ class SummaryGeneratorService
       client.messages.create(
         model: "claude-haiku-4-5-20251001",
         max_tokens: 300,
-        messages: [{ role: "user", content: prompt }]
+        messages: [ { role: "user", content: prompt } ]
       )
     end
     response.content.first.text.strip
@@ -31,7 +31,7 @@ class SummaryGeneratorService
   def prompt
     p = @profile
     lines = []
-    lines << "Name: #{[p.first_name, p.last_name].compact.join(' ')}" if p.first_name.present?
+    lines << "Name: #{[ p.first_name, p.last_name ].compact.join(' ')}" if p.first_name.present?
     lines << "Job function: #{p.job_function&.name}" if p.job_function.present?
     lines << "Years of experience: #{p.years_of_experience}" if p.years_of_experience.present?
     lines << "City: #{p.city}" if p.city.present?
