@@ -132,16 +132,18 @@ class OnboardingController < ApplicationController
 
   def session_profile
     if session[:candidate_profile_id]
-      CandidateProfile.find_by(id: session[:candidate_profile_id])
-    else
-      guest_user = User.create!(
-        email_address: "guest_#{SecureRandom.hex(8)}@temp.invalid",
-        password: SecureRandom.hex(16)
-      )
-      profile = guest_user.create_candidate_profile!
-      session[:candidate_profile_id] = profile.id
-      profile
+      profile = CandidateProfile.find_by(id: session[:candidate_profile_id])
+      return profile if profile
+      session.delete(:candidate_profile_id)
     end
+
+    guest_user = User.create!(
+      email_address: "guest_#{SecureRandom.hex(8)}@temp.invalid",
+      password: SecureRandom.hex(16)
+    )
+    profile = guest_user.create_candidate_profile!
+    session[:candidate_profile_id] = profile.id
+    profile
   end
 
   def current_profile

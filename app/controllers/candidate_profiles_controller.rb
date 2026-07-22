@@ -25,7 +25,16 @@ class CandidateProfilesController < ApplicationController
   end
 
   def destroy
-    CandidateProfile.find(params[:id]).destroy
+    profile = CandidateProfile.find(params[:id])
+    user    = profile.user
+    profile.destroy
+
+    # Remove guest user (identified by temp email domain)
+    user.destroy if user&.email_address&.end_with?("@temp.invalid")
+
+    # Clear session if the visitor deleted their own profile so re-upload starts fresh
+    session.delete(:candidate_profile_id) if session[:candidate_profile_id].to_i == profile.id
+
     redirect_to candidate_profiles_path, notice: "Profile deleted."
   end
 end
