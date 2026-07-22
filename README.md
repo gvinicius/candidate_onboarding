@@ -1,24 +1,34 @@
-# README
+# Candidate Onboarding
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Dental recruitment candidate onboarding platform. Candidates upload their CV, Anthropic AI parses it, and they review/complete their profile.
 
-Things you may want to cover:
+## Stack
 
-* Ruby version
+- **Ruby** 3.3.4
+- **Rails** 8.1.3
+- **PostgreSQL** 16+
 
-* System dependencies
+## Setup
 
-* Configuration
+```bash
+bundle install
+bin/rails db:create db:migrate db:seed
+```
 
-* Database creation
+## Run
 
-* Database initialization
+```bash
+bin/rails server
+```
 
-* How to run the test suite
+Set `ANTHROPIC_API_KEY` in your environment or enter it on the upload screen.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Tests
 
-* Deployment instructions
+```bash
+# RSpec (unit + request specs)
+DB_PASSWORD=postgres bundle exec rspec
 
-* ...
+# Playwright E2E
+DB_PASSWORD=postgres npx playwright test
+```
