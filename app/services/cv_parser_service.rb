@@ -98,6 +98,7 @@ class CvParserService
     end
 
     raw_json = response.content.first.text.strip
+               .gsub(/\A```(?:json)?\s*/, "").gsub(/\s*```\z/, "")
     JSON.parse(raw_json)
   rescue JSON::ParserError => e
     raise "CV parser returned invalid JSON: #{e.message}"
