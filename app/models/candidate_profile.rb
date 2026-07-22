@@ -56,14 +56,17 @@ class CandidateProfile < ApplicationRecord
     scalar_fields = %i[first_name last_name email phone_number city country
                        years_of_experience big_number professional_summary]
     scalar_fields.each do |field|
-      value = parsed[field.to_s]
-      assign_attributes(field => value) if value.present?
+      assign_attributes(field => parsed[field.to_s])
     end
 
-    if parsed["job_function"].present?
-      jf = JobFunction.find_by("name ILIKE ?", parsed["job_function"])
-      self.job_function = jf if jf
+    self.job_function = if parsed["job_function"].present?
+      JobFunction.find_by("name ILIKE ?", parsed["job_function"])
     end
+
+    educations.destroy_all
+    work_experiences.destroy_all
+    candidate_languages.destroy_all
+    candidate_skills.destroy_all
 
     assign_parsed_educations(parsed["educations"])
     assign_parsed_work_experiences(parsed["work_experiences"])
